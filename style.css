@@ -59,7 +59,6 @@ main {
     font-weight: bold;
     font-size: larger;
     color: #0A3871;
-    text-shadow: 1px 1px 5px #868E96;
     padding: 2em;
     margin: 1em 0em;
 }
@@ -112,8 +111,7 @@ button {
 }
 
 .contenido-mensaje {
-    position: relative;
-    top: 90px;
+    height: 85%;
 }
 
 .mensaje img {
@@ -121,12 +119,18 @@ button {
 }
 
 .mensaje p {
-    font-size: small;
+   font-size: medium;
 }
 
-.copiar {
+.mensaje-encriptado {
+    text-align: left;
+    white-space: wrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+#copiar {
     background-color: #FFFFFF;
-    visibility: hidden;
 }
 
 footer {
