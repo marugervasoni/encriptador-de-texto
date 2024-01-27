@@ -17,7 +17,7 @@
     <main class="principal">        
         <section class="texto">
             <img class="logo" src="./img/Logo.svg" alt="Logo">
-            <textarea name="ingresar-texto" id="ingresar-texto" cols="20" rows="10">Ingrese el texto aquí</textarea>
+            <textarea name="ingresar-texto" id="ingresar-texto" cols="20" rows="10" placeholder="Ingrese el texto aquí"></textarea>
             <article class="principal-inferior">
                 <img class="advertencia" src="./img/advertencia.svg" alt="advertencia">
                 <div class="botones">
@@ -27,10 +27,10 @@
             </article>
         </section>
         <section class="mensaje">
-            <article class="contenido-mensaje">
+            <article id="bloque-mensaje" class="contenido-mensaje">
                 <img id="muñeco" src="./img/Muñeco.png" alt="muñeco">
                 <h3 id="ningun-mensaje">Ningún Mensaje fue encontrado</h3>
-                <p>Ingresa el texto que desees encriptar o desencriptar</p>
+                <p id="texto-a-copiar">Ingresa el texto que desees encriptar o desencriptar</p>
             </article>    
             <button onclick="copiar();" id="copiar" style="visibility: hidden;">Copiar</button>
         </section>

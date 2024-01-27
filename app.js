@@ -1,5 +1,20 @@
+//atributos
 let classMensajeEncriptado = 'mensaje-encriptado';
+let idTextoACopiar = "texto-a-copiar";
+
+//contenido
+let parrafoIngresarTexto = "Ingresa el texto que desees encriptar o desencriptar"
+
+//elementos
+let imgMuñeco = document.getElementById('muñeco');
+let h3NingunMsj = document.getElementById('ningun-mensaje');
 let btnCopiar = document.getElementById('copiar');
+
+
+function crearElementoHTML(tagName) {
+    let elementoHTML = document.createElement(tagName);
+    return elementoHTML;
+}
 
 
 function asignarTextoElemento(elemento, texto) {
@@ -8,22 +23,41 @@ function asignarTextoElemento(elemento, texto) {
     return elementoHTML;
 }
 
-function borrarElementoHTMLById(id) {
-    let elementoHTML = document.getElementById(id).remove();        
+
+function agregarAtributo(elementoHTML, atributo, valor) {
+    elementoHTML.setAttribute(atributo, valor);
 }
 
-function quitarContenidoBloqueMensaje() {
-    borrarElementoHTMLById('muñeco');
-    borrarElementoHTMLById('ningun-mensaje');    
- }
 
- function agregarAtributo(elementoHTML, atributo, valor) {
-    elementoHTML.setAttribute(atributo, valor);
- }
+function quitarContenidoBloqueMensaje() {
+    let noVisible = "display: none;"; 
+    agregarAtributo(imgMuñeco, 'style', noVisible );
+    agregarAtributo(h3NingunMsj, 'style', noVisible );
+}
+
+
+function cambiarContenidoBloqueMensaje(textoActual) {
+    imgMuñeco ? quitarContenidoBloqueMensaje() : "";
+    let mensajeActual = asignarTextoElemento('p',textoActual);
+    agregarAtributo(mensajeActual,'class', classMensajeEncriptado);
+    btnCopiar.removeAttribute('style');
+}
+
+
+function limpiarCaja() {
+    document.querySelector('#ingresar-texto').value = "";
+}
+
+
+function condicionesIniciales() {
+    imgMuñeco.removeAttribute('style');
+    h3NingunMsj.removeAttribute('style');
+    btnCopiar.setAttribute('style', "visibility: hidden");
+    asignarTextoElemento('p', parrafoIngresarTexto).removeAttribute('class');
+}
+
 
 function encriptar() {
-
-    let imgMuñeco = document.getElementById('muñeco');
     let texto = document.getElementById('ingresar-texto').value;    
     let textoEncriptado = "";
     
@@ -50,19 +84,12 @@ function encriptar() {
                 textoEncriptado += letra;
         }
     }
-
-    imgMuñeco ? quitarContenidoBloqueMensaje() : "";
-
-    let mensajeActual = asignarTextoElemento('p',textoEncriptado);
-    agregarAtributo(mensajeActual,'class', classMensajeEncriptado);
-
-     btnCopiar.removeAttribute('style');    
+    cambiarContenidoBloqueMensaje(textoEncriptado);
+    limpiarCaja();
 }
 
 
-function desencriptar() {
-    
-    let imgMuñeco = document.getElementById('muñeco');
+function desencriptar() {    
     let texto = document.getElementById('ingresar-texto').value;    
     let textoDesencriptado = texto;
 
@@ -72,27 +99,31 @@ function desencriptar() {
         'imes': 'i',
         'ober': 'o',
         'ufat': 'u'
-    };
-
+    };    
     for (const [clave, valor] of Object.entries(sustituciones)) {
         textoDesencriptado = textoDesencriptado.split(clave).join(valor);
     }
-
-    imgMuñeco ? quitarContenidoBloqueMensaje() : "";
-
-    let mensajeActual = asignarTextoElemento('p',textoDesencriptado);
-    agregarAtributo(mensajeActual,'class', classMensajeEncriptado);
-
-    btnCopiar.hasAttribute('style') ? btnCopiar.removeAttribute('style') : "";
+    cambiarContenidoBloqueMensaje(textoDesencriptado);
+    limpiarCaja();
 }
 
 
-// }
+function copiar() {
+    let textoACopiar = document.getElementById(idTextoACopiar).innerText;
+    const areaTransferencia = crearElementoHTML('input');  
+    areaTransferencia.value = textoACopiar;
 
-// function copiar(params) {
-    
-// }
+    document.body.appendChild(areaTransferencia);
+    navigator.clipboard.writeText(textoACopiar)
+    .then(() => {
+        alert('Texto copiado al portapapeles');
+    })
+    .catch(err => {
+        console.error('Error al copiar al portapapeles:', err);
+    })
+    .finally(() => {
+        document.body.removeChild(areaTransferencia);
+    });
+}
 
-
-
-
+condicionesIniciales();
