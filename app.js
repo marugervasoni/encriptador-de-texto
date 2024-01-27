@@ -23,6 +23,7 @@ function quitarContenidoBloqueMensaje() {
 
 function encriptar() {
 
+    let imgMuñeco = document.getElementById('muñeco');
     let texto = document.getElementById('ingresar-texto').value;    
     let textoEncriptado = "";
     
@@ -49,16 +50,43 @@ function encriptar() {
                 textoEncriptado += letra;
         }
     }
-    quitarContenidoBloqueMensaje();
+
+    imgMuñeco ? quitarContenidoBloqueMensaje() : "";
 
     let mensajeActual = asignarTextoElemento('p',textoEncriptado);
     agregarAtributo(mensajeActual,'class', classMensajeEncriptado);
 
-    btnCopiar.removeAttribute('style');
+     btnCopiar.removeAttribute('style');    
 }
 
-// function desencriptar(params) {
+
+function desencriptar() {
     
+    let imgMuñeco = document.getElementById('muñeco');
+    let texto = document.getElementById('ingresar-texto').value;    
+    let textoDesencriptado = texto;
+
+    const sustituciones = {
+        'ai': 'a',
+        'enter': 'e',
+        'imes': 'i',
+        'ober': 'o',
+        'ufat': 'u'
+    };
+
+    for (const [clave, valor] of Object.entries(sustituciones)) {
+        textoDesencriptado = textoDesencriptado.split(clave).join(valor);
+    }
+
+    imgMuñeco ? quitarContenidoBloqueMensaje() : "";
+
+    let mensajeActual = asignarTextoElemento('p',textoDesencriptado);
+    agregarAtributo(mensajeActual,'class', classMensajeEncriptado);
+
+    btnCopiar.hasAttribute('style') ? btnCopiar.removeAttribute('style') : "";
+}
+
+
 // }
 
 // function copiar(params) {
