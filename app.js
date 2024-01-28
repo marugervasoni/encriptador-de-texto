@@ -1,11 +1,10 @@
-//atributos
+document.getElementById('year').textContent = new Date().getFullYear();
+
 let classMensajeEncriptado = 'mensaje-encriptado';
 let idTextoACopiar = "texto-a-copiar";
 
-//contenido
 let parrafoIngresarTexto = "Ingresa el texto que desees encriptar o desencriptar"
 
-//elementos
 let imgMuñeco = document.getElementById('muñeco');
 let h3NingunMsj = document.getElementById('ningun-mensaje');
 let btnCopiar = document.getElementById('copiar');
