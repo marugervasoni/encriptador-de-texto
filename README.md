@@ -1,7 +1,7 @@
 # encriptador-de-texto
 
 Aplicación que encripta textos como desafío de Beca Oracle Next Education
-
+***
 
 ## Consigna
 Las "llaves" de encriptación que utilizaremos son las siguientes:
@@ -20,5 +20,20 @@ La aplicación:
 - función Encriptar.
 - función Desencriptar.
 - función Copiar: Un botón que copie el texto encriptado/desencriptado para la sección de transferencia, o sea que tenga la misma funcionalidad del ctrl+C o de la opción "copiar" del menú de las aplicaciones.
+***
 
+## Construido con 🛠️
+
+- HTML5
+- CSS3
+- Javascript 
+
+## Autores ✒️
+
+- Desarrollo y Documentación: María Rosa Gervasoni
+
+
+#### Muchas Gracias 🎁
+
+#### ⌨️ con ❤️ por marugervasoni 😊
 
