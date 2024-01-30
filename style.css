@@ -104,6 +104,10 @@ button {
     border: 1px #0A3871 solid;
 }
 
+button:hover {
+    border: solid 2px violet;
+}
+
 .desencriptar {
     background-color:#E9ECF8;
 }

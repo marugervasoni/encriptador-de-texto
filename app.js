@@ -15,18 +15,15 @@ function crearElementoHTML(tagName) {
     return elementoHTML;
 }
 
-
 function asignarTextoElemento(elemento, texto) {
     let elementoHTML = document.querySelector(elemento);
     elementoHTML.innerHTML = texto;
     return elementoHTML;
 }
 
-
 function agregarAtributo(elementoHTML, atributo, valor) {
     elementoHTML.setAttribute(atributo, valor);
 }
-
 
 function validaciones() {
     let texto = document.getElementById('ingresar-texto').value;     
@@ -44,13 +41,11 @@ function validaciones() {
     return resultado;
 }
 
-
 function quitarContenidoBloqueMensaje() {
     let noVisible = "display: none;"; 
     agregarAtributo(imgMuñeco, 'style', noVisible );
     agregarAtributo(h3NingunMsj, 'style', noVisible );
 }
-
 
 function cambiarContenidoBloqueMensaje(textoActual) {
     imgMuñeco ? quitarContenidoBloqueMensaje() : "";
@@ -59,11 +54,9 @@ function cambiarContenidoBloqueMensaje(textoActual) {
     btnCopiar.removeAttribute('style');
 }
 
-
 function limpiarCaja() {
     document.querySelector('#ingresar-texto').value = "";
 }
-
 
 function condicionesIniciales() {
     imgMuñeco.removeAttribute('style');
@@ -72,44 +65,43 @@ function condicionesIniciales() {
     asignarTextoElemento('p', parrafoIngresarTexto).removeAttribute('class');
 }
 
-
 function encriptar() {
-
-    let texto = validaciones();
     let textoEncriptado = "";
-    
-    for (let i = 0; i < texto.length; i++) {
-        const letra = texto[i];
-        
-        switch (letra) {
-            case 'a': 
-                textoEncriptado += "ai";
-                break;
-            case 'e': 
-                textoEncriptado += "enter";
-                break;    
-            case 'i': 
-                textoEncriptado += "imes";
-                break;
-            case 'o': 
-                textoEncriptado += "ober";
-                break;    
-            case 'u': 
-                textoEncriptado += "ufat";
-                break;
-            default: 
-                textoEncriptado += letra;
+    let texto = validaciones();
+    if (texto != "") {
+        for (let i = 0; i < texto.length; i++) {
+            const letra = texto[i];
+            
+            switch (letra) {
+                case 'a': 
+                    textoEncriptado += "ai";
+                    break;
+                case 'e': 
+                    textoEncriptado += "enter";
+                    break;    
+                case 'i': 
+                    textoEncriptado += "imes";
+                    break;
+                case 'o': 
+                    textoEncriptado += "ober";
+                    break;    
+                case 'u': 
+                    textoEncriptado += "ufat";
+                    break;
+                default: 
+                    textoEncriptado += letra;
+            }
         }
+        cambiarContenidoBloqueMensaje(textoEncriptado);
+        limpiarCaja();
+    } else {
+        condicionesIniciales();
     }
-    cambiarContenidoBloqueMensaje(textoEncriptado);
-    limpiarCaja();
 }
-
 
 function desencriptar() {    
     let texto = validaciones();
     let textoDesencriptado = texto;
-
     const sustituciones = {
         'ai': 'a',
         'enter': 'e',
@@ -117,13 +109,17 @@ function desencriptar() {
         'ober': 'o',
         'ufat': 'u'
     };    
-    for (const [clave, valor] of Object.entries(sustituciones)) {
-        textoDesencriptado = textoDesencriptado.split(clave).join(valor);
-    }
-    cambiarContenidoBloqueMensaje(textoDesencriptado);
-    limpiarCaja();
-}
 
+    if (texto != "") {
+        for (const [clave, valor] of Object.entries(sustituciones)) {
+            textoDesencriptado = textoDesencriptado.split(clave).join(valor);
+        }
+        cambiarContenidoBloqueMensaje(textoDesencriptado);
+        limpiarCaja();
+    } else {
+        condicionesIniciales();
+    }
+}
 
 function copiar() {
     let textoACopiar = document.getElementById(idTextoACopiar).innerText;
@@ -142,5 +138,3 @@ function copiar() {
         document.body.removeChild(areaTransferencia);
     });
 }
-
-condicionesIniciales();
