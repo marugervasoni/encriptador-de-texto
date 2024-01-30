@@ -28,6 +28,23 @@ function agregarAtributo(elementoHTML, atributo, valor) {
 }
 
 
+function validaciones() {
+    let texto = document.getElementById('ingresar-texto').value;     
+    let resultado; 
+
+    if (/[A-Z]/.test(texto)) {
+        resultado = document.getElementById('ingresar-texto').value = "";
+        alert('Ingrese solo letras en minuscula')
+    } else if (/[ÁÉÍÓÚÜáéíóúü]/.test(texto)) {
+        resultado = document.getElementById('ingresar-texto').value = "";
+        alert('Ingrese solo letras sin acentos')
+    } else {
+        resultado = texto;   
+    }
+    return resultado;
+}
+
+
 function quitarContenidoBloqueMensaje() {
     let noVisible = "display: none;"; 
     agregarAtributo(imgMuñeco, 'style', noVisible );
@@ -57,7 +74,8 @@ function condicionesIniciales() {
 
 
 function encriptar() {
-    let texto = document.getElementById('ingresar-texto').value;    
+
+    let texto = validaciones();
     let textoEncriptado = "";
     
     for (let i = 0; i < texto.length; i++) {
@@ -89,7 +107,7 @@ function encriptar() {
 
 
 function desencriptar() {    
-    let texto = document.getElementById('ingresar-texto').value;    
+    let texto = validaciones();
     let textoDesencriptado = texto;
 
     const sustituciones = {
